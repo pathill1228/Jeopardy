@@ -2,6 +2,8 @@
 const gameDisplay = document.querySelector('#game-display');
 const questionsDiv = document.querySelector('#questions-div');
 const titlesDiv = document.querySelector('#titles-div');
+const questionPage = document.querySelector('#question-page');
+
 
 gameDisplay.classList.add('hidden');
 
@@ -36,7 +38,7 @@ export function displayQuestions(questions) {
         const display = document.createElement('div');
         //console.log(question.question);
 
-        display.innerText = question.value;
+        display.innerText = "$" + question.value;
         display.dataset.id = question.id;
         display.dataset.question = question.question;
 
@@ -45,13 +47,16 @@ export function displayQuestions(questions) {
 
         questionsDiv.appendChild(display);
 
-        // add onclick that changes inner text to display.dataset.question and changes color to white
     }
 }
 
 document.addEventListener('click', (e) => {
     if (e.target.classList.contains('question-box')) {
-        // hide everything else and only display the question with either a correct and incorrect button, or an input that accepts text
-        console.log(e.target.dataset.question);
+        // console.log(e.target.dataset.question);
+        const question = document.createElement('h2');
+        question.innerText = e.target.dataset.question;
+        questionPage.appendChild(question);
+
+        window.location.href = '/question/';
     }
 });
